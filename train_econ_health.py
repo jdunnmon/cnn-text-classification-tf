@@ -53,9 +53,26 @@ print("Loading data...")
 #x_text, y = data_helpers.load_data_and_labels(FLAGS.positive_data_file, FLAGS.negative_data_file)
 
 x_ld = np.load(FLAGS.sentences_data_file)
-y = np.load(FLAGS.labels_data_file)
+y_ld = np.load(FLAGS.labels_data_file)
 
 x_text = [str(x) for x in x_ld] 
+y = []
+
+#transforming labels to size 3 one-hots
+for lab in y_ld:
+    tmp = np.zeros(3)
+    ii = int(np.nonzero(lab)[0])
+    if 0<=ii and ii<=2:
+        tmp[0] = 1
+    elif 2<ii and ii<=5:
+        tmp[1] = 1
+    elif 5< ii and ii<=8:
+        tmp[2] = 1
+    y.append(tmp)
+
+y = np.array(y)
+
+#import pdb; pdb.set_trace()
 # Build vocabulary
 max_document_length = max([len(x.split(" ")) for x in x_text])
 vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)

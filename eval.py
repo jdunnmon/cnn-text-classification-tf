@@ -95,4 +95,5 @@ predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))
 out_path = os.path.join(FLAGS.checkpoint_dir, "..", "prediction.csv")
 print("Saving evaluation to {0}".format(out_path))
 with open(out_path, 'wb') as f:
+    import pdb; pdb.set_trace()
     csv.writer(f).writerows(predictions_human_readable)

@@ -16,6 +16,7 @@
 # -l h_rt=04:00:00
 
 # Perform tasks
-source ~/.bashrc.user
+source ~/afs/cs.stanford.edu/u/jdunnmon/.bashrc.user
 cd /atlas/u/jdunnmon/tutorial/cnn-text-classification-tf
+source activate py27tflow0p12
 python train_nlp.py > out_gop.txt
