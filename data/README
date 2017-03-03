@@ -1,0 +1,16 @@
+econ health
+-----------
+
+dataset length : 2899
+number of unique tokens : 12692
+number of classes : 9
+
+note that there are lots of repeats in the text because
+several text blurbs use the same headlines
+
+gop
+---
+
+dataset length : 13871
+number of unique tokens : 14066
+number of classes : 3
