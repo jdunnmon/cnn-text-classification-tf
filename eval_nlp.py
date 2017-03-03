@@ -14,6 +14,7 @@ from tensorflow.contrib import learn
 #import csv
 import unicodecsv as csv
 import codecs
+import collections
 
 # Parameters
 # ==================================================
@@ -55,8 +56,30 @@ else:
     x_ld = np.load(FLAGS.sentences_data_file_test)
     x_raw = [x.encode('utf-8') for x in x_ld] 
     y_test = np.load(FLAGS.labels_data_file_test)
+    
+    #handling econ health data
+    if FLAGS.labels_data_file_test == "./nlp_features/econ_health_onehotlabels.npy":
+        y = []
+     #transforming labels to size 3 one-hots
+        for lab in y_test:
+            tmp = np.zeros(3)
+            ii = int(np.nonzero(lab)[0])
+            if 0<=ii and ii<=2:
+                tmp[0] = 1
+            elif 2<ii and ii<=5:
+                tmp[1] = 1
+            elif 5< ii and ii<=8:
+                tmp[2] = 1
+            y.append(tmp)
+
+        y_test = np.array(y)
+
     y_test = np.argmax(y_test,axis=1)
 
+#import pdb; pdb.set_trace()
+print("Test set label balance:")
+p = collections.Counter(y_test)
+print(p)
 # Map data into vocabulary
 vocab_path = os.path.join(FLAGS.checkpoint_dir, "..", "vocab")
 vocab_processor = learn.preprocessing.VocabularyProcessor.restore(vocab_path)

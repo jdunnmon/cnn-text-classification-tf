@@ -1,0 +1,19 @@
+
+Parameters:
+ALLOW_SOFT_PLACEMENT=True
+BATCH_SIZE=64
+CHECKPOINT_DIR=./runs/1488504630/checkpoints
+EVAL_TRAIN=False
+LABELS_DATA_FILE_TEST=./nlp_features/gop_onehotlabels.npy
+LABELS_DATA_FILE_TRAIN=./nlp_features/econ_health_onehotlabels.npy
+LOG_DEVICE_PLACEMENT=False
+SENTENCES_DATA_FILE_TEST=./nlp_features/gop_sentences_list_of_strings.npy
+SENTENCES_DATA_FILE_TRAIN=./nlp_features/econ_health_sentences_list_of_strings.npy
+UNROLLED_LSTM=False
+
+
+Evaluating...
+
+Total number of test examples: 13871
+Accuracy: 0.907505
+Saving evaluation to ./runs/1488504630/checkpoints/../prediction.csv
