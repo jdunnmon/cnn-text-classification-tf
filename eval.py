@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+from __future__ import absolute_import, division, print_function
+from builtins import *
+
 import tensorflow as tf
 import numpy as np
 import os
@@ -19,7 +22,7 @@ tf.flags.DEFINE_string("negative_data_file", "./data/rt-polaritydata/rt-polarity
 
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
-tf.flags.DEFINE_string("checkpoint_dir", "./runs/1488492852/checkpoints", "Checkpoint directory from training run")
+tf.flags.DEFINE_string("checkpoint_dir", "./runs/1488499184/checkpoints", "Checkpoint directory from training run")
 tf.flags.DEFINE_boolean("eval_train", False, "Evaluate on all training data")
 
 # Misc Parameters
@@ -91,5 +94,5 @@ if y_test is not None:
 predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))
 out_path = os.path.join(FLAGS.checkpoint_dir, "..", "prediction.csv")
 print("Saving evaluation to {0}".format(out_path))
-with open(out_path, 'w') as f:
+with open(out_path, 'wb') as f:
     csv.writer(f).writerows(predictions_human_readable)

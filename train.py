@@ -1,5 +1,8 @@
 #! /usr/bin/env python
 
+from __future__ import absolute_import, division, print_function
+from builtins import *
+
 import tensorflow as tf
 import numpy as np
 import os
@@ -53,7 +56,7 @@ x_text, y = data_helpers.load_data_and_labels(FLAGS.positive_data_file, FLAGS.ne
 max_document_length = max([len(x.split(" ")) for x in x_text])
 vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)
 x = np.array(list(vocab_processor.fit_transform(x_text)))
-import pdb; pdb.set_trace()
+#import pdb; pdb.set_trace()
 # Randomly shuffle data
 np.random.seed(10)
 shuffle_indices = np.random.permutation(np.arange(len(y)))
